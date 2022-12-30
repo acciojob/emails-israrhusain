@@ -20,35 +20,15 @@ public class Email {
 
     public void changePassword(String oldPassword, String newPassword){
         if(this.password.equals(oldPassword)){
-                String uppercase="";
-                String lowercase="";
-                String digit ="";
-                String special="";
-                for(int i=0; i<newPassword.length()-1; i++){
-                    if(Character.isUpperCase(newPassword.charAt(i))){
-                        uppercase=uppercase+newPassword.charAt(i);
-                    }
-                    else if(Character.isLowerCase(newPassword.charAt(i))){
-                        lowercase+=newPassword.charAt(i);
-                    }
-                    else if(Character.isDigit(newPassword.charAt(i))){
-                        digit+=newPassword.charAt(i);
-                    }
-                    else{
-                        special+=newPassword.charAt(i);
-                    }
+                if(isValid(newPassword)){
+                    this.password=newPassword;
                 }
-
-    if(newPassword.length()>=8 && uppercase.length()>=1 && lowercase.length()>=1 && digit.length()>=1 && special.length()>=1){
-                this.password=newPassword;
-    }
-    else{
-        System.out.println("Wrong password");
-    }
-            
-     }
-     else{
-        System.out.println("old password mismatches with newpassword");
+                else{
+                    System.out.println("invalid password");
+                }
+            }
+         else{
+               System.out.println("old password mismatches with newpassword");
        }
         //Change password only if the oldPassword is equal to current password and the new password meets all of the following:
         // 1. It contains at least 8 characters
@@ -56,5 +36,33 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
+    }
+    public boolean isValid(String newPassword){
+        boolean capitalletter=false;
+        boolean smallletter=false;
+        boolean digit=false;
+        boolean specialletter=false;
+        if(newPassword.length()<8){
+            return false;
+        }
+        for(int i=0; i<newPassword.length(); i++){
+              char ch=newPassword.charAt(i);
+              if(ch>='A' && ch<='Z'){
+                 capitalletter=true;
+              }
+             else if(ch>='a' && ch<='z'){
+                smallletter=true;
+              }
+            else if(ch>='0'  && ch<='9'){
+                 digit=true;
+              }
+              else{
+                specialletter=true;
+              }
+        }
+        if(capitalletter && smallletter && digit && specialletter){
+            return true;
+        }
+        return false;
     }
 }

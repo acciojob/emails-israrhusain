@@ -1,6 +1,6 @@
 package com.driver;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Emailcontainer {
     Date date;

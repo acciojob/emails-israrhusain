@@ -36,10 +36,10 @@ public class Gmail extends Email {
                 inbox.remove(0);
                 trash.add(mail);
            }
-           else{
-              Emailcontainer mail=new Emailcontainer(null, sender, message);
-              inbox.add(mail);
-           }
+           
+        Emailcontainer mail=new Emailcontainer(date, sender, message);
+        inbox.add(mail);
+           
         // If the inbox is full, move the oldest mail in the inbox to trash and add the new mail to inbox.
         // It is guaranteed that:
         // 1. Each mail in the inbox is distinct.
